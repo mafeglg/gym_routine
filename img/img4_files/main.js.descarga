@@ -1,0 +1,69 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
+
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* Multisite global vanilla JS entry point */
+__webpack_require__(11);
+
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(module, exports) {
+
+/* eslint wrap-iife: "off", func-names: "off" */
+(function () {
+  function resolveAdMargin() {
+    const megalateral = document.getElementsByClassName('ad-megalateral')[0];
+    if (!megalateral) {
+      return;
+    }
+
+    const targetNode = document.getElementsByClassName('sticky-navbar-ad-container')[0];
+    const shareBar = document.getElementsByClassName('share_bar')[0];
+    const sectionNav = document.getElementsByClassName('section-nav')[0];
+    let baseHeight = 0;
+
+    if (targetNode) {
+      baseHeight += targetNode.offsetHeight;
+    }
+    if (shareBar) {
+      baseHeight += shareBar.offsetHeight;
+    }
+    if (sectionNav) {
+      baseHeight += sectionNav.offsetHeight;
+    }
+    megalateral.style.top = `${baseHeight}px`;
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function observerCallback() {
+    sleep(500).then(() => resolveAdMargin());
+  }
+
+  if (typeof window !== 'undefined' && window.screen.width > 990) {
+    sleep(1000).then(() => {
+      resolveAdMargin();
+      const observer = new MutationObserver(observerCallback);
+      const targetNode = document.getElementsByClassName('sticky-navbar-ad-container')[0];
+      const config = {
+        attributes: true,
+        childList: false,
+        subtree: false,
+        attributeFilter: ['style'],
+      };
+      if (targetNode) {
+        observer.observe(targetNode, config);
+      }
+    });
+  }
+})();
+
+
+/***/ })
+
+},[[10,0]]]);

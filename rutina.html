@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  </head>
+  <body class="todo">
+    <nav class="navbar navbar-expand-lg bg-primary border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand">Gym Routine</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="rutina.html">Rutina</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="motivacion.html">Motivación</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <div class="contenedor1 container">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center titulos">Registro Rutina</h1>
+          <br>
+          <form action="">
+            <select id="dia" class="form-select" aria-label="Default select example">
+              <option selected>Ingrese el dia de la semana:</option>
+              <option value="1">Lunes</option>
+              <option value="2">Martes</option>
+              <option value="3">Miércoles</option>
+              <option value="4">Jueves</option>
+              <option value="5">Viernes</option>
+              <option value="6">Sábado</option>
+              <option value="7">Domingo</option>
+            </select>
+            <br>
+            <select id="musculo" class="form-select" aria-label="Default select example">
+              <option selected>Grupos musculares:</option>
+              <option value="1">Pecho, hombros y tríceps</option>
+              <option value="2">Espalda, bíceps y abdominales</option>
+              <option value="3">Isquiotibiales, cuádriceps y gemelos</option>
+              <option value="4">Pantorrillas, isquiotibiales, cuádriceps, glúteos</option>
+              <option value="5">Bíceps, espalda, abdominales, trapecios, dorsales</option>
+            </select>
+            <br>
+            <input id="cantidad"  class="form-control" type="number" placeholder="Ingrese la cantidad de ejercicios">
+            <br>
+            <button id="registrar"  class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <table class="table table-primary">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ejercicios</th>
+                <th>Series</th>
+                <th>Repeticiones</th>
+              </tr>
+            </thead>
+            <tbody id="rutina">
+
+            </tbody>
+          </table>
+          <button id="guardar" class="btn btn-primary mt-3">Guardar rutina</button>
+          <br>
+        </div>
+      </div>
+    </div>
+    <script src="js/rutina.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  </body>
+</html>

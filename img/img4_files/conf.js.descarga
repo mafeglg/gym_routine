@@ -1,0 +1,148 @@
+if (window.scimhtiraidem && window.scimhtiraidem._call) {
+const userEventTag = {"site_id":"4635","enable_experimental_features":false,"enable_local_segment_evaluation":false,"enable_installation_id_generation":false,"enable_tcf_v2_for_cookie_matching":false,"enable_goo_matching":true,"enable_apx_matching":true,"enable_id5_id":false,"enable_utiq_mtid":false,"enable_utiq_mtid_fixed":false,"custom_configuration":{},"enable_edge_semantic_extraction":false};
+const datatypeTextFieldPaths = ["events.category_contains","events.city_contains","events.page_keywords_contains","events.sub_section_contains","events.section_contains","events.url_contains","events.page_title_contains","events.content.focus_keyword_contains"];
+const mumConf = {"channel_id":"4635","active":true,"mics_cookie_domain":null,"mics_cookie_domain_creation_ts":null,"mics_cookie_domain_last_modified_ts":null};
+const cmp_ids = [352,308,5,449,247,379,440,10,385,384,340,404,185,417,436,25,14,125,421,46,416,448,316,443,321,376,348,397,280,61,453,396,411,428,312,292,380,439,220,452,6,302,260,28,392,297,424,407,429,21,165,92,229,361,435,329,224,317,388,141,420,403,9,225,77,212,129,371,134,105,2,311,343,237,412,425,430,264,279,444,423,291,59,413,259,27,445,335,236,181,350,382,54,406,113,419,7,318,434,303,451,76,387,323,213,198,330,462,345,367,399,306,299,438,431,167,35,426,162,374,112,123,355,63,282,414,327,409,441,463,31,72,386,446,231,450,363,218,104,304,258,351,390,401,171,418,58,433,383,287,235,246,300,447,432,410,168,405,273,242,294,341,79,437,415,332,459,47,200,68,369,90,227,354,309,222,454,364];
+const enable_mum_id = JSON.parse(mumConf.active ?? userEventTag.enable_mum_id ?? true);
+const enable_id5 = JSON.parse(userEventTag.enable_id5_id ?? false);
+
+// Restrict from using forbidden registry
+window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", ['0']);
+if (enable_id5) {
+window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", ['4']);
+}
+const extra_allowed_registries = [];
+
+extra_allowed_registries.forEach(registry => window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", [registry]));
+
+const fullLegacyConf = {
+...(userEventTag.custom_configuration || {}),
+"cmp_ids": cmp_ids,
+"enable_local_segment_evaluation": JSON.parse(userEventTag.enable_local_segment_evaluation ?? 'false'),
+"datatype_text_field_paths": datatypeTextFieldPaths,
+"segment_evaluator_uri": userEventTag.segment_evaluator_uri,
+"segment_definition_uri": userEventTag.segment_definition_uri,
+"enable_apx_matching": enable_mum_id && JSON.parse(userEventTag.enable_apx_matching ?? 'true'),
+"enable_goo_matching": enable_mum_id && JSON.parse(userEventTag.enable_goo_matching ?? 'true'),
+"enable_tcf_v2_for_cookie_matching": JSON.parse(userEventTag.enable_tcf_v2_for_cookie_matching ?? 'false'),
+"enable_mum_id": enable_mum_id,
+"enable_id5": enable_id5,
+"namespace": userEventTag.namespace,
+"site_token": userEventTag.site_token ?? (!userEventTag.dat_token ? "infobae-2023" : undefined),
+"dat_token": userEventTag.dat_token ?? (!userEventTag.site_token ? "infobae-2023" : undefined),
+"device_id_registry_token_to_id_map": userEventTag.device_id_registry_token_to_id_map ?? {},
+"mics_cookie_domain": userEventTag.mics_cookie_domain,
+"mics_cookie_domain_creation_ts": userEventTag.mics_cookie_domain_creation_ts,
+"mics_cookie_domain_last_modified_ts": userEventTag.mics_cookie_domain_last_modified_ts,
+"enable_edge_semantic_extraction": userEventTag.enable_edge_semantic_extraction,
+};
+window.scimhtiraidem._call("infobae-2023", 'setConfig', [fullLegacyConf]);
+
+try {
+const mumIdConf = {"channel_id":"4635","active":true,"mics_cookie_domain":null,"mics_cookie_domain_creation_ts":null,"mics_cookie_domain_last_modified_ts":null};
+if (JSON.parse(mumIdConf.active ?? 'true')) {
+window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", ["mum"]);
+} else {
+window.scimhtiraidem._call("infobae-2023", "deleteAdvertisingCookie", ["vid"]);
+}
+} catch (e) {
+window.console.error("An unexpected error occurred in mum-id-conf", e);
+}
+try {
+const installationIdConfiguration = {"channel_id":"4635","device_id_registry_id":null,"device_id_registry_token":null,"active":false} ;
+if (installationIdConfiguration.device_id_registry_token) {
+if (JSON.parse(installationIdConfiguration.active ?? 'false')) {
+window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", [installationIdConfiguration.device_id_registry_token]);
+window.scimhtiraidem._call(
+"infobae-2023",
+'upsertAdvertisingCookie',
+["ins", installationIdConfiguration.device_id_registry_token, "aY2Q2NDJjNmMtNDMxMi00YjI5LWEwNjAtYTQ4MDYzZGQ1ZjM3"]
+);
+} else {
+window.scimhtiraidem._call("infobae-2023", "deleteAdvertisingCookie", [installationIdConfiguration.device_id_registry_token]);
+}
+}
+} catch (e) {
+window.console.error("An unexpected error occurred in installation-id-conf", e);
+}
+try {
+const firstIdConf = {"channel_id":"4635","active":false};
+if (JSON.parse(firstIdConf.active ?? 'false')) {
+window.scimhtiraidem._call("infobae-2023", "addAllowedRegistry", ['first-id']);
+
+function readCookie(name) {
+const cookies = window.document.cookie.split(';');
+for (let i = 0; i < cookies.length; i++) {
+const cookie = cookies[i].replace(/ /g, '').split('=');
+if (cookie[0] === name) {
+return cookie[1];
+}
+}
+return undefined;
+}
+
+let firstIdValue;
+if (window.FIRSTID !== undefined && window.FIRSTID.getId !== undefined) {
+window.scimhtiraidem._call("infobae-2023", "lodDebug", ['FIRSTID present, use FIRSTID.getId()']);
+firstIdValue = window.FIRSTID.getId();
+} else if (window.firstId !== undefined && window.firstId.cookieName !== undefined) {
+window.scimhtiraidem._call("infobae-2023", "lodDebug", ['only firstId conf present, use firstId.cookieName']);
+firstIdValue = readCookie(window.firstId.cookieName);
+} else {
+window.scimhtiraidem._call("infobae-2023", "lodDebug", ['Nothing found, read cookie firstid']);
+firstIdValue = readCookie("firstid");
+}
+window.scimhtiraidem._call("infobae-2023", "lodDebug", ['firstIdValue = ' + firstIdValue]);
+
+if (typeof firstIdValue === 'string' && firstIdValue.length > 0) {
+window.scimhtiraidem._call("infobae-2023", "_addIdentifier", ['USER_AGENT', {"$user_agent_id": `net:first-id:${firstIdValue}`}]);
+}
+}
+} catch (e) {
+window.console.error("An unexpected error occurred in first-id-conf", e);
+}
+try {
+let utiqMtidConf = {"channel_id":"4635","utiq_mtid_mobile_conf":{"channel_id":"4635","active":false,"compartment_id":"20","compartment_token":"utiq-martechpass"},"utiq_mtid_fixed_conf":{"channel_id":"4635","active":false,"compartment_id":"21","compartment_token":"utiq-martechpass-fixed"},"active":false,"tag_configuration_name":"utiq-mtid-conf"};
+if (JSON.parse(utiqMtidConf.active ?? 'false')) {
+window.Utiq = window.Utiq || {};
+window.Utiq.queue = window.Utiq.queue || [];
+
+const onIdsAvailableHandler = ({mtid,atid,attrid,category,ttl,domain}) => {
+window.scimhtiraidem._call("infobae-2023", "lodDebug", [`onIdsAvailableHandler: mtid=${mtid}, atid=${atid}, attrid=${attrid}, category=${category}, ttl=${ttl}, domain=${domain}`]);
+if (mtid.indexOf(' ') < 0) {
+let compartmentToken = null;
+if (category === "mobile" && utiqMtidConf.utiq_mtid_mobile_conf.active) {
+compartmentToken = utiqMtidConf.utiq_mtid_mobile_conf.compartment_token;
+} else if (category === "fixed" && utiqMtidConf.utiq_mtid_fixed_conf.active) {
+compartmentToken = utiqMtidConf.utiq_mtid_fixed_conf.compartment_token;
+} else {
+window.console.warn(`Utiq mtid is not of mobile nor fixed category (=${category}), not adding to identifiers`);
+}
+if (compartmentToken) {
+const now = new Date();
+const millisecondsInThreeMonths = 90 * 24 * 60 * 60 * 1000; // 90 days
+let expirationTs = now.getTime() + millisecondsInThreeMonths;
+if (ttl && !isNaN(Date.parse(ttl))) {
+expirationTs = Date.parse(ttl);
+}
+let account = {
+"$user_account_id": mtid,
+"$compartment_token": compartmentToken,
+"$expiration_ts": expirationTs
+};
+window.scimhtiraidem._call("infobae-2023", "_addIdentifier", ['USER_ACCOUNT', account]);
+}
+} else {
+window.console.error('Invalid mtid', mtid);
+}
+};
+
+window.Utiq.queue.push(() => {
+window.Utiq.API.addEventListener('onIdsAvailable', onIdsAvailableHandler);
+});
+};
+} catch (e) {
+window.console.error("An unexpected error occurred in utiq-mtid-conf", e);
+}
+window.scimhtiraidem._call("infobae-2023", 'markConfigAsLoaded', []);
+}

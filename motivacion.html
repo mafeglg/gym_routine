@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gym Routine</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="todo">
+    <nav class="navbar navbar-expand-lg bg-primary border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand">Gym Routine</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="rutina.html">Rutina</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="motivacion.html">Motivación</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="mx-auto mt-5" style="max-width: 900px;">
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/img8.avif" alt="" class="d-block w-100 img-fluid rounded">
+          </div>
+          <div class="carousel-item">
+            <img src="img/img9.avif" alt="" class="d-block w-100 img-fluid rounded">
+          </div>
+          <div class="carousel-item">
+            <img src="img/img7.avif" alt="" class="d-block w-100 img-fluid rounded">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div id="contenedor" class="frase-container">Haz clic aquí para inspirarte 💪</div>
+    </div>
+    <br>
+    <div class="container">
+      <div id="contenedor-cartas"></div>
+    </div>
+    <br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/motivacion.js"></script>
+  </body>
+</html>

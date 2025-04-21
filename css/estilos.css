@@ -1,0 +1,41 @@
+#carouselExample .carousel-inner {
+    max-height: 500px; /* Podés ajustar la altura como prefieras */
+}
+
+#carouselExample .carousel-inner img {
+    object-fit: cover;
+    height: 100%;
+}
+.todo {
+    background-color: rgb(245, 246, 248); 
+}
+
+.contenedor1{
+    height: 320px;
+    padding: 5px;
+}
+.titulos{
+    font-family: 'Poppins', cursive; 
+}
+.num{
+    vertical-align: middle;
+}
+.frase-container {
+    padding: 50px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: #68b2fc;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.frase-container:hover {
+    background: #0482ff;
+}
+.section3{
+    text-align: center;
+    font-size: larger;
+    margin: 1em 0em 2em 0em;
+}
