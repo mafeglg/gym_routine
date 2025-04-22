@@ -39,3 +39,7 @@
     font-size: larger;
     margin: 1em 0em 2em 0em;
 }
+.card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
