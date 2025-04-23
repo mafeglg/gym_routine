@@ -31,6 +31,7 @@ btnBuscar.addEventListener('click', () => {
             <td>${ejercicio.nombre}</td>
             <td>${ejercicio.series}</td>
             <td>${ejercicio.repeticiones}</td>
+            <td>${ejercicio.peso}</td>
             <td><input type="checkbox" class="form-check-input cumplimiento-check"></td>
           `;
           tabla.appendChild(fila);

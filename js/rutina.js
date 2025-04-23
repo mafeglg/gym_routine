@@ -39,6 +39,8 @@ function imprimirRutina() {
             <td><input type="text" class="form-control" placeholder="Nombre del ejercicio ${i}"></td>
             <td><input type="number" class="form-control" placeholder="Series"></td>
             <td><input type="number" class="form-control" placeholder="Repeticiones"></td>
+            <td><input type="number" class="form-control" placeholder="Peso en kilos"></td>
+
         `;
 
         tbody.appendChild(fila);
@@ -56,8 +58,9 @@ btnguardar.addEventListener('click', () => {
         const nombre = inputs[0].value;
         const series = inputs[1].value;
         const repeticiones = inputs[2].value;
+        const peso= inputs[3].value;
 
-        if (!nombre || !series || !repeticiones) {
+        if (!nombre || !series || !repeticiones || !peso ) {
             alert(`Por favor completa todos los campos del ejercicio ${index + 1}`);
             return;
         };
@@ -65,7 +68,8 @@ btnguardar.addEventListener('click', () => {
         let ejercicio = {
             nombre,
             series,
-            repeticiones
+            repeticiones,
+            peso
         };
 
         ejerciciosTemp.push(ejercicio);
