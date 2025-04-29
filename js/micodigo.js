@@ -12,7 +12,7 @@ btnBuscar.addEventListener('click', () => {
   if (!grupoSeleccionado) {
     alert('Por favor, selecciona un grupo muscular');
     return;
-  }
+  };
 
   // Actualizar texto del grupo seleccionado
   const nombreGrupo = selectGrupo.selectedOptions[0].text;
